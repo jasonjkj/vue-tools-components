@@ -1,32 +1,23 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+    <a href="/index/Test">Index</a>
+    <hr>
+    <a href="/demo/Test">Demo</a>
+    <router-view class="app-router-view" style="position: relative" :key="$route.fullpath"></router-view>
   </div>
 </template>
+<script>
+  export default {
+    name: 'App',
+    created() {
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
+    },
+    beforeRouteLeave(to, from, next){
+      alert(123123)
+      next()
     }
   }
-}
+</script>
+<style lang="scss">
+
 </style>
