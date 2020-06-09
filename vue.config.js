@@ -49,6 +49,15 @@ module.exports = {
                 symbolId: 'icon-[name]'
             })
             .end()
+            // .use('style-loader!css-loader')
+            // .test(/\.css$/)
+            // .loader('style-loader!css-loader')
+            // .exclude('/node_modules/')
+            // .end()
+            // .test(/\.(woff|svg|eot|ttf)\??.*$/)
+            // .loader('url-loader')
+            // .end()
+
         if (IS_PROD) {
             config
                 .plugin('webpack-bundle-analyzer')
@@ -109,7 +118,7 @@ module.exports = {
         config.plugins = [...config.plugins, ...plugins];
 
         //devtool: 'cheap-module-eval-source-map', 这是默认值 导致我每次都找不到debugger
-        config. devtool= 'source-map'
+        config.devtool = 'source-map'
     },
     // CSS 相关选项
     css: {
@@ -177,7 +186,7 @@ module.exports = {
         },
         demo: {
             // page 的入口
-            entry: "src/pages/demo/main.js",
+            entry: "./src/pages/demo/main.js",
             // 模板来源
             template: "public/demo.html",
             // 在 dist/index.html 的输出
