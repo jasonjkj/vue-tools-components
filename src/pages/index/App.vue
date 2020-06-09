@@ -1,8 +1,8 @@
 <template>
   <div id="app">
-    <a href="/index/Test">Index</a>
+    <a href="/index">Index</a>
     <hr>
-    <a href="/demo/Test">Demo</a>
+    <a href="/demo">Demo</a>
     <router-view class="app-router-view" style="position: relative" :key="$route.fullpath"></router-view>
   </div>
 </template>
