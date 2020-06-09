@@ -1,12 +1,20 @@
-const routes = [
-    {
-        path: '/index/Test',
-        name: 'Yest',
-        meta: {
-            hidden: true
-        },
-        component: () => import('../views/Test/Test')
-    },
-];
+import Vue from 'vue'
+import VueRouter from 'vue-router'
 
-export default routes
+Vue.use(VueRouter)
+
+  const routes = [
+  // {
+  //   path: '/',
+  //   name: 'Home',
+  //   component: Home
+  // },
+]
+
+const router = new VueRouter({
+  mode: 'history',
+  base: process.env.BASE_URL,
+  routes
+})
+
+export default router
