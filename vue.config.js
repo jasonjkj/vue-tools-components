@@ -23,6 +23,9 @@ let cdn = {
 };
 
 module.exports = {
+    // devtool:'#source-map',
+    // devtool:'source-map',
+
     publicPath: IS_PROD ? '/' : '/', // 默认'/'，部署应用包时的基本 URL,
     // 放置静态资源的地方 (js/css/img/font/...)
     assetsDir: 'static',
@@ -125,7 +128,7 @@ module.exports = {
         sourceMap: !IS_PROD,
         // 为所有的 CSS 及其预处理文件开启 CSS Modules。
         // 这个选项不会影响 `*.vue` 文件。
-        requireModuleExtension: false
+        requireModuleExtension: true
     },
     // 在生产环境下为 Babel 和 TypeScript 使用 `thread-loader`
     // 在多核机器下会默认开启。
@@ -149,7 +152,7 @@ module.exports = {
         // string | Object
         // change 设置跨域代理
         proxy: {
-            '/rasp': {
+            '/api': {
                 target: 'http://localhost:8080/',   //测试服务
                 changeOrigin: true,
                 secure: false,
@@ -170,20 +173,6 @@ module.exports = {
     },
     //多页面配置
     pages: {
-        index: {
-            // page 的入口
-            entry: "src/pages/index/main.js",
-            // 模板来源
-            template: "public/index.html",
-            // 在 dist/index.html 的输出
-            filename: "index.html",
-            // 当使用 title 选项时，
-            // template 中的 title 标签需要是 <title><%= htmlWebpackPlugin.options.title %></title>
-            title: "Index Page",
-            // 在这个页面中包含的块，默认情况下会包含
-            // 提取出来的通用 chunk 和 vendor chunk。
-            chunks: ["chunk-vendors", "chunk-common", "index"]
-        },
         demo: {
             // page 的入口
             entry: "./src/pages/demo/main.js",
@@ -198,6 +187,20 @@ module.exports = {
             // 提取出来的通用 chunk 和 vendor chunk。
             chunks: ["chunk-vendors", "chunk-common", "demo"]
         },
+        index: {
+            // page 的入口
+            entry: "src/pages/index/main.js",
+            // 模板来源
+            template: "public/index.html",
+            // 在 dist/index.html 的输出
+            filename: "index.html",
+            // 当使用 title 选项时，
+            // template 中的 title 标签需要是 <title><%= htmlWebpackPlugin.options.title %></title>
+            title: "Index Page",
+            // 在这个页面中包含的块，默认情况下会包含
+            // 提取出来的通用 chunk 和 vendor chunk。
+            chunks: ["chunk-vendors", "chunk-common", "index"]
+        },
         // 当使用只有入口的字符串格式时，
         // 模板会被推导为 `public/subpage.html`
         // 并且如果找不到的话，就回退到 `public/index.html`。
@@ -206,9 +209,9 @@ module.exports = {
     },
     // 三方插件的选项
     pluginOptions: {
-        'style-resources-loader': {
-            preProcessor: 'less',
-            patterns: [path.resolve(__dirname, 'src/styles/vairable.less')]
-        }
+        // 'style-resources-loader': {
+        //     preProcessor: 'less',
+        //     patterns: [path.resolve(__dirname, 'src/styles/vairable.less')]
+        // }
     }
 }

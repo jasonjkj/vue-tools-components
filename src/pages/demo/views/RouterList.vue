@@ -1,28 +1,27 @@
 <template>
 	<div class="RouterList">
-			<div v-for="(item,index) in routeList">
-				<el-button>asdasd</el-button>
-				 <el-button type="primary">主要按钮</el-button>
-				<el-link type="primary">
-					<router-link :to="item.path"> {{ item.name }} </router-link>
-				</el-link>
-			</div>
+		<div v-for="(item,index) in routeList">
+			<router-link :to="item.path">
+				<el-link type="primary">{{ item.name }}</el-link>
+			</router-link>
+		</div>
 	</div>
 </template>
 
 <script>
-		import routeList from  '../router/routes.js'
+    import routeList from '../router/routes.js'
+
     export default {
         name: "RouterList",
-		    data(){
+        data() {
             return {
-                routeList:routeList
+                routeList: routeList
             }
-		    }
+        }
 
     }
 </script>
 
-<style  scoped>
+<style scoped>
 
 </style>

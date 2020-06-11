@@ -1,12 +1,12 @@
 <template>
 	<div class="aaa">
-		asdasdasdasd
+			<h1>  文件夹自定义路由测试 </h1>
 	</div>
 </template>
 
 <script>
     export default {
-
+				name:"DirTest"
     }
 </script>
 
