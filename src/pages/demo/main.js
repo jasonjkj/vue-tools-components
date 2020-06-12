@@ -17,8 +17,12 @@ import stockInit from 'highcharts/modules/stock'
 stockInit(Highcharts)
 
 import Highcharts3D from 'highcharts/highcharts-3d';
-Highcharts3D(Highcharts);
+import Drilldown from 'highcharts/modules/drilldown.js'
+import Exporting from 'highcharts/modules/exporting.js'
 
+Highcharts3D(Highcharts);
+Drilldown(Highcharts)
+Exporting(Highcharts)
 Vue.use(HighchartsVue)
 
 Vue.config.productionTip = false
