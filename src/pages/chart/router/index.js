@@ -12,7 +12,7 @@ routes.push({
 })
 const router = new VueRouter({
     mode: 'history',
-    base: 'demo/',      //多页面的时候, base 是必要的
+    base: 'chart/',      //多页面的时候, base 是必要的
     routes
 })
 

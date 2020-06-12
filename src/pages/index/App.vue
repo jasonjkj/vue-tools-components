@@ -2,7 +2,7 @@
   <div id="app">
     <a href="/index">Index</a>
     <hr>
-    <a href="/demo">Demo</a>
+    <a href="/chart">chart</a>
     <router-view class="app-router-view" style="position: relative" :key="$route.fullpath"></router-view>
   </div>
 </template>

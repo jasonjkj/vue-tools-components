@@ -20,7 +20,6 @@
             setTimeout(()=>{
                 ws.send('asdasd')
             },1000)
-
         },
         mounted(){
 
