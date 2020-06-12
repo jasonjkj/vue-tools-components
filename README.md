@@ -1,29 +1,4 @@
-# vue-tools-components
+#路由自动化(rough book)
 
-## Project setup
-```
-npm install
-```
+用于前端组件开发的独立环境
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Run your unit tests
-```
-npm run test:unit
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
