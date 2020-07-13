@@ -11,7 +11,10 @@ Vue.use(ElementUI,{
   // i18n: (key, value) => i18n.t(key, value)
 });
 import echarts from 'echarts'
+
 Vue.prototype.$echarts = echarts
+import VChart from "../../components/VChart.vue"; //引入全局对象Catagory侧滑
+Vue.component("VChart", VChart);
 
 new Vue({
   router,
