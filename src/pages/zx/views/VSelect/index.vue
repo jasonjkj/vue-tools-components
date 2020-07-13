@@ -10,7 +10,7 @@
       default-first-option
       placeholder="请选择">
       <div slot="empty">
-        <el-tree ref="tree" :data="data" :props="defaultProps" node-key="id" 
+        <el-tree ref="tree" :data="data" :props="defaultProps" node-key="id"
           :check-strictly="checkStrictly"
           @node-click="handleNodeClick"
           @check-change="handleClick"
@@ -20,7 +20,7 @@
           <el-button plain @click.native="handleCancel">取消</el-button>
           <el-button type="main" plain @click.native="handleConfirm">确定</el-button>
         </div>
-      </div>   
+      </div>
     </el-select>
   </div>
 </template>
@@ -68,7 +68,7 @@
                 id: 6,
                 label: '三级 2-1-1'
               }]
-            }, 
+            },
             {
               id: 7,
               label: '二级 2-2',
@@ -109,11 +109,15 @@
     computed:{
       value:{
         get(){
+          if(!this.isMultiple){
+              //不是多选 绑定label就行
+              return this.checked.toString()
+          }
           return this.checked.map((item,index)=>{
             return item.label
           })
         },
-        set(val){ 
+        set(val){
         }
       }
     },
@@ -167,7 +171,7 @@
   }
 </script>
 
-<style scoped> 
+<style scoped>
 .expanded+label>.el-checkbox__input{
   display:none
 }
