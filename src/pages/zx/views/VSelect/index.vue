@@ -16,7 +16,7 @@
           @check-change="handleClick"
           :show-checkbox="showCheck">
         </el-tree>
-        <div style="text-align: center;" >
+        <div style="text-align: center;" v-if="isMultiple">
           <el-button plain @click.native="handleCancel">取消</el-button>
           <el-button type="main" plain @click.native="handleConfirm">确定</el-button>
         </div>
@@ -26,21 +26,21 @@
 </template>
 
 <script>
-  function isChild(data){
-    debugger
-    data.map((item,index)=>{
-      if(item.children){
-        isChild(item.children)
-      }else{
-        console.log(item.label)
-      }
-    })
-  }
+  // function isChild(data){
+  //   debugger
+  //   data.map((item,index)=>{
+  //     if(item.children){
+  //       isChild(item.children)
+  //     }else{
+  //       return item.label
+  //     }
+  //   })
+  // }
   export default {
     data() {
       return {
         i:0,
-        checkStrictly:false, //复选时，该属性为false可直接获取最终子级;
+        checkStrictly:true, //复选时，该属性为false可直接获取最终子级;
         isMultiple:false,
         collapseTags:false,
         showCheck:true, //tree显示多选还是单选
@@ -105,13 +105,11 @@
         },
       }
     },
-    mounted(){},
     computed:{
       value:{
         get(){
           if(!this.isMultiple){
-              //不是多选 绑定label就行
-              return this.checked.toString()
+              return this.checked && this.checked[0] && this.checked[0].label
           }
           return this.checked.map((item,index)=>{
             return item.label
@@ -124,10 +122,6 @@
     methods:{
       handleClick(data,checked, node){
         debugger
-        console.log(data,checked,node)
-          // if(data.children && checked==false){
-          //   data.disabled=true
-          // }
         if(!this.isMultiple){
           this.i++;
           if(this.i%2===0){
@@ -135,19 +129,25 @@
               debugger
               this.$refs.tree.setCheckedNodes([]);
               this.$refs.tree.setCheckedNodes([data]);
-              this.checked=this.$refs.tree.setCheckedNodes([data])[0].label
+              this.checked=[{...data}]
               //交叉点击节点
             }else{
               this.$refs.tree.setCheckedNodes([]);
+              this.checked=[]
               //点击已经选中的节点，置空
             }
           }
+          console.log('已选中内容-单选：',this.checked)
+          this.$refs.select.visible=false
         }
       },
       handleNodeClick(data){
-        let data1=[{...data}]
-        this.checked=isChild(data1).label
-        console.log('handleNodeClick',this.checked)
+        // debugger
+        // let data1=[{...data}]
+        // console.log('data1:',data1)
+        // console.log('isChild',isChild(data1))
+        // // this.checked=isChild(data1)
+        // // console.log('handleNodeClick',this.checked)
       },
       handleCancel(){
         this.$refs.tree.setCheckedNodes([])
@@ -156,7 +156,7 @@
       handleConfirm(){
         this.checked=this.$refs.tree.getCheckedNodes(true)
         this.$refs.select.visible=false
-        console.log('已选中内容-确定按钮：',this.$refs.tree.getCheckedNodes(true))
+        console.log('已选中内容-确定按钮：',this.checked)
       },
       handleDel(val){
         this.checked.map((item,index)=>{
@@ -172,7 +172,7 @@
 </script>
 
 <style scoped>
-.expanded+label>.el-checkbox__input{
+>>> .expanded+label>.el-checkbox__input{
   display:none
 }
 
