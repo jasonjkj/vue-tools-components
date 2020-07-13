@@ -1,5 +1,8 @@
 <template>
-	<div class="VChart" ref="chartContainer"></div>
+	<div class="VChart">
+		<div v-if="isShow" class="VChart" ref="chartContainer"></div>
+	</div>
+
 </template>
 
 <script>
@@ -22,13 +25,6 @@
                     return {}
                 }
             },
-		        updateType:{
-                type: String,
-                // 对象或数组默认值必须从一个工厂函数获取
-                default: function () {
-                    return 'auto'
-                }
-		        }   //自动"auto'  手动'manual'
         },
         created: function () {
 
@@ -41,12 +37,16 @@
         data() {
             return {
                 chart: null,
+                isShow:false
             }
         },
         methods: {
-            refresh() {
-                // this.isShow=false;
-
+            forceUpdate() {
+                this.isShow=false
+		            var timer=setTimeout(()=>{
+                    this.isShow=true
+                    this.setOptions()
+		            })
             },
             initChart() {
                 this.$el.style.width = (this.styles.width || 800) + 'px';
@@ -63,10 +63,6 @@
         watch: {
             options: {
                 handler(n, o) {
-                    if(this.updateType === 'manual'){
-                        //手动更新 不执行重渲染
-                        return
-                    }
                     this.setOptions()
                 },
                 deep: true,

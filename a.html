@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+	//添加千分位 ","
+    const comdify = function (n) {
+        if (!n) return n;
+        let str = n.split('.');
+        let re = /\d{1,3}(?=(\d{3})+$)/g;
+        let n1 = str[0].replace(re, '$&,');
+        return str.length > 1 && str[1] ? `${n1}.${str[1]}` : `${n1}.00`;
+    };
+
+    //去除千分位中的‘,'
+    const delcommafy = function (num) {
+        if (!num) return num;
+        num = num.toString();
+        num = num.replace(/,/gi, '');
+        return num;
+    };
+
+    //
+    function byteConver(byteVal, limit = 2) {
+        var size = "";
+        var unit = null;
+
+        if (byteVal < 0.1 * 1024) { //如果小于0.1KB转化成B
+            size = byteVal.toFixed(limit);
+            unit = "B"
+        } else if (byteVal < 0.1 * 1024 * 1024) {//如果小于0.1MB转化成KB
+            size = (byteVal / 1024).toFixed(limit);
+            unit = "KB"
+        } else if (byteVal < 0.1 * 1024 * 1024 * 1024) { //如果小于0.1GB转化成MB
+            size = (byteVal / (1024 * 1024)).toFixed(limit);
+            unit = "MB"
+        } else { //其他转化成GB
+            size = (byteVal / (1024 * 1024 * 1024)).toFixed(limit);
+            unit = "GB"
+        }
+        size = comdify(size) + " "+unit
+        var sizestr = size + "";
+
+        var len = sizestr.indexOf("\.");
+        var dec = sizestr.substr(len + 1, 2);
+        if (dec == "00") {//当小数点后为00时 去掉小数部分
+            return sizestr.substring(0, len) + sizestr.substr(len + 3, 2);
+        }
+        return sizestr;
+    }
+</script>
+</html>

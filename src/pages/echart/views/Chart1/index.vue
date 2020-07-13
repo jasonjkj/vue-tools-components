@@ -9,9 +9,13 @@
         data() {
             return {
                 options: {
+
                     title: {
                         text: '动态数据',
-                        subtext: '纯属虚构'
+                        subtext: '纯属虚构',
+		                    textStyle:{
+
+                        }
                     },
                     tooltip: {
                         trigger: 'axis',
@@ -40,6 +44,10 @@
                     },
                     xAxis: [
                         {
+                            axisLabel:{
+                              /*  interval:false*/
+                                interval:'auto'
+                            },
                             type: 'category',
                             boundaryGap: true,
                             data: (function (){
@@ -53,21 +61,39 @@
                                 return res;
                             })()
                         },
-                        {
-                            type: 'category',
-                            boundaryGap: true,
-                            data: (function (){
-                                var res = [];
-                                var len = 10;
-                                while (len--) {
-                                    res.push(10 - len - 1);
-                                }
-                                return res;
-                            })()
-                        }
+                        // {
+                        //     type: 'category',
+                        //     boundaryGap: true,
+                        //     data: (function (){
+                        //         var res = [];
+                        //         var len = 10;
+                        //         while (len--) {
+                        //             res.push(10 - len - 1);
+                        //         }
+                        //         return res;
+                        //     })()
+                        // },
+
                     ],
                     yAxis: [
                         {
+                            axisLine:{
+                                lineStyle:{
+                                    color:"#999999",
+                                    // shadowColor: 'rgba(0, 0, 0, 0.5)',
+                                    shadowColor: '#999999',
+                                    opacity:1,
+                                    shadowBlur: 1
+                                }
+                            },
+                            axisTick:{
+                                lineStyle:{
+                                    color:"#e5e5e5"
+                                }
+                            },
+                            axisLabel:{
+                                interval:false
+                            },
                             type: 'value',
                             scale: true,
                             name: '价格',
@@ -84,8 +110,14 @@
                             boundaryGap: [0.2, 0.2]
                         }
                     ],
+		                grid:{
+                        show:false,
+                        borderWidth:1,
+                        // borderColor:"#e5e5e5"
+                        borderColor:"red"
+                    },
                     series: [
-                        {
+                       /* {
                             name: '预购队列',
                             type: 'bar',
                             xAxisIndex: 1,
@@ -98,8 +130,9 @@
                                 }
                                 return res;
                             })()
-                        },
+                        },*/
                         {
+
                             name: '最新成交价',
                             type: 'line',
                             data: (function (){
