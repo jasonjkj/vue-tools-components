@@ -12,8 +12,8 @@
       <div slot="empty">
         <el-tree ref="tree" :data="data" :props="defaultProps" node-key="id"
           :check-strictly="checkStrictly"
-          @node-click="handleNodeClick"
           @check-change="handleClick"
+          @check="handleCheck"
           :show-checkbox="showCheck">
         </el-tree>
         <div style="text-align: center;" v-if="isMultiple">
@@ -126,33 +126,30 @@
     },
     methods:{
       handleClick(data,checked, node){
-        debugger
         if(!this.isMultiple){
+          debugger
           this.checked=[{...data}]
-          if(checked){
+          this.i++;
+          if(this.i%2===0){
+            if(checked){
               debugger
               this.$refs.tree.setCheckedNodes([]);
               this.$refs.tree.setCheckedNodes([data]);
               //交叉点击节点
             }else{
               this.$refs.tree.setCheckedNodes([]);
-              this.checked=[]
+              // this.checked=[]
               //点击已经选中的节点，置空
             }
-          // this.i++;
-          // if(this.i%2===0){
-          // }
+          }
           console.log('已选中内容-单选：',this.checked)
+          debugger
           this.$refs.select.visible=false
         }
       },
-      handleNodeClick(data){
-        // debugger
-        // let data1=[{...data}]
-        // console.log('data1:',data1)
-        // console.log('isChild',isChild(data1))
-        // // this.checked=isChild(data1)
-        // // console.log('handleNodeClick',this.checked)
+      handleCheck(a,b){
+        console.log('a',a)
+        console.log('b',b)
       },
       handleCancel(){
         this.$refs.tree.setCheckedNodes([])
