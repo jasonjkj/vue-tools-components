@@ -26,16 +26,17 @@
 </template>
 
 <script>
-  // function isChild(data){
-  //   debugger
-  //   data.map((item,index)=>{
-  //     if(item.children){
-  //       isChild(item.children)
-  //     }else{
-  //       return item.label
-  //     }
-  //   })
-  // }
+  function isChild(data){
+    debugger
+    data.map((item,index)=>{
+      if(item.children){
+        item.disabled=true
+        isChild(item.children)
+      }else{
+        return data
+      }
+    })
+  }
   export default {
     data() {
       return {
@@ -119,24 +120,28 @@
         }
       }
     },
+    mounted(){
+      isChild(this.data)
+      console.log(111,this.data)
+    },
     methods:{
       handleClick(data,checked, node){
         debugger
         if(!this.isMultiple){
-          this.i++;
-          if(this.i%2===0){
-            if(checked){
+          this.checked=[{...data}]
+          if(checked){
               debugger
               this.$refs.tree.setCheckedNodes([]);
               this.$refs.tree.setCheckedNodes([data]);
-              this.checked=[{...data}]
               //交叉点击节点
             }else{
               this.$refs.tree.setCheckedNodes([]);
               this.checked=[]
               //点击已经选中的节点，置空
             }
-          }
+          // this.i++;
+          // if(this.i%2===0){
+          // }
           console.log('已选中内容-单选：',this.checked)
           this.$refs.select.visible=false
         }
@@ -172,8 +177,8 @@
 </script>
 
 <style scoped>
->>> .expanded+label>.el-checkbox__input{
-  display:none
+/deep/ .el-tree-node__content>.el-checkbox.is-disabled{
+  display:none;
 }
 
 </style>
