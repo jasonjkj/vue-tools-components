@@ -44,7 +44,7 @@
         isMultiple:false,
         collapseTags:false,
         showCheck:true, //tree显示多选还是单选
-        checked:[],  //选中的项
+        checked:'',  //选中的项
         data:[
           {
             id: 1,
@@ -111,7 +111,7 @@
         get(){
           if(!this.isMultiple){
               //不是多选 绑定label就行
-              return this.checked.toString()
+              return this.checked && this.checked[0] && this.checked[0].label
           }
           return this.checked.map((item,index)=>{
             return item.label
@@ -123,7 +123,6 @@
     },
     methods:{
       handleClick(data,checked, node){
-        debugger
         console.log(data,checked,node)
           // if(data.children && checked==false){
           //   data.disabled=true
