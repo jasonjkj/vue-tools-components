@@ -36,7 +36,7 @@
 
 <script>
   export default {
-    name:"VInput",
+    name:"input",
     data(){
       return {
         checked:[],
