@@ -10,14 +10,14 @@ Vue.use(ElementUI,{
   size: 'mini', // set element-ui default size
   // i18n: (key, value) => i18n.t(key, value)
 });
-import echarts from 'echarts'
 
-Vue.prototype.$echarts = echarts
-import VChart from "../../components/VChart.vue"; //引入全局对象Catagory侧滑
-Vue.component("VChart", VChart);
+import VueCtkDateTimePicker from 'vue-ctk-date-time-picker';
+import 'vue-ctk-date-time-picker/dist/vue-ctk-date-time-picker.css';
 
+Vue.component('VueCtkDateTimePicker', VueCtkDateTimePicker);
 
-import "./algorithm/recursion.js"
+Vue.config.productionTip = false
+console.log(process.env);
 new Vue({
   router,
   store,

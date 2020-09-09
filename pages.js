@@ -1,4 +1,32 @@
 module.exports = {
+  painting: {
+    // page 的入口
+    entry: "./src/pages/painting/main.js",
+    // 模板来源
+    template: "public/painting.html",
+    // 在 dist/index.html 的输出
+    filename: "painting.html",
+    // 当使用 title 选项时，
+    // template 中的 title 标签需要是 <title><%= htmlWebpackPlugin.options.title %></title>
+    title: "painting Page",
+    // 在这个页面中包含的块，默认情况下会包含
+    // 提取出来的通用 chunk 和 vendor chunk。
+    chunks: ["chunk-vendors", "chunk-common", "painting"]
+  },
+    scroll: {
+        // page 的入口
+        entry: "./src/pages/scroll/main.js",
+        // 模板来源
+        template: "public/scroll.html",
+        // 在 dist/index.html 的输出
+        filename: "scroll.html",
+        // 当使用 title 选项时，
+        // template 中的 title 标签需要是 <title><%= htmlWebpackPlugin.options.title %></title>
+        title: "scroll Page",
+        // 在这个页面中包含的块，默认情况下会包含
+        // 提取出来的通用 chunk 和 vendor chunk。
+        chunks: ["chunk-vendors", "chunk-common", "scroll"]
+    },
   zx: {
     // page 的入口
     entry: "./src/pages/zx/main.js",

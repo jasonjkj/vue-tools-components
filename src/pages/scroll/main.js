@@ -10,14 +10,12 @@ Vue.use(ElementUI,{
   size: 'mini', // set element-ui default size
   // i18n: (key, value) => i18n.t(key, value)
 });
-import echarts from 'echarts'
 
-Vue.prototype.$echarts = echarts
-import VChart from "../../components/VChart.vue"; //引入全局对象Catagory侧滑
-Vue.component("VChart", VChart);
+import VueVirtualScroller from 'vue-virtual-scroller'
+import 'vue-virtual-scroller/dist/vue-virtual-scroller.css'
+Vue.use(VueVirtualScroller)
 
-
-import "./algorithm/recursion.js"
+Vue.config.productionTip = false
 new Vue({
   router,
   store,
