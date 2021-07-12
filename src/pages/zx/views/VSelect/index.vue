@@ -18,11 +18,11 @@
           :props="defaultProps"
           node-key="id"
           :check-strictly="checkStrictly"
-          @node-click="handleNodeClick"
-          @check-change="handleClick"
-          :show-checkbox="showCheck">
-        </el-tree>
-        <div style="text-align: center;" >
+          @check-change="checkChange"
+          @check="handleCheck"
+          :show-checkbox="showCheck"
+        ></el-tree>
+        <div style="text-align: center;" v-if="isMultiple">
           <el-button plain @click.native="handleCancel">取消</el-button>
           <el-button type="main" plain @click.native="handleConfirm">确定</el-button>
         </div>
@@ -129,7 +129,6 @@ export default {
         children: "children",
         label: "label"
       }
-<<<<<<< HEAD
     };
   },
   computed: {
@@ -137,22 +136,6 @@ export default {
       get() {
         if (!this.isMultiple) {
           return this.checked && this.checked[0] && this.checked[0].label;
-=======
-    },
-    mounted(){},
-    computed:{
-      value:{
-        get(){
-          if(!this.isMultiple){
-              //不是多选 绑定label就行
-              return this.checked.toString()
-          }
-          return this.checked.map((item,index)=>{
-            return item.label
-          })
-        },
-        set(val){
->>>>>>> bb5306637cb95ff0af954d4a5222914fc41d12aa
         }
         return this.checked.map((item, index) => {
           return item.label;
@@ -209,7 +192,6 @@ export default {
       }
       this.$refs.select.visible = false;
     },
-<<<<<<< HEAD
     handleCancel() {
       this.$refs.tree.setCheckedNodes([]);
       this.checked = [];
@@ -227,66 +209,13 @@ export default {
           console.log("已选中内容-删除按钮：", this.checked);
         }
       });
-=======
-    methods:{
-      handleClick(data,checked, node){
-        debugger
-        console.log(data,checked,node)
-          // if(data.children && checked==false){
-          //   data.disabled=true
-          // }
-        if(!this.isMultiple){
-          this.i++;
-          if(this.i%2===0){
-            if(checked){
-              debugger
-              this.$refs.tree.setCheckedNodes([]);
-              this.$refs.tree.setCheckedNodes([data]);
-              this.checked=this.$refs.tree.setCheckedNodes([data])[0].label
-              //交叉点击节点
-            }else{
-              this.$refs.tree.setCheckedNodes([]);
-              //点击已经选中的节点，置空
-            }
-          }
-        }
-      },
-      handleNodeClick(data){
-        let data1=[{...data}]
-        this.checked=isChild(data1).label
-        console.log('handleNodeClick',this.checked)
-      },
-      handleCancel(){
-        this.$refs.tree.setCheckedNodes([])
-        this.checked=[]
-      },
-      handleConfirm(){
-        this.checked=this.$refs.tree.getCheckedNodes(true)
-        this.$refs.select.visible=false
-        console.log('已选中内容-确定按钮：',this.$refs.tree.getCheckedNodes(true))
-      },
-      handleDel(val){
-        this.checked.map((item,index)=>{
-          if(item.label==val){
-            this.checked.splice(index,1)
-            this.$refs.tree.setCheckedNodes(this.checked)
-            console.log('已选中内容-删除按钮：',this.checked)
-          }
-        })
-      }
->>>>>>> bb5306637cb95ff0af954d4a5222914fc41d12aa
     }
   }
 };
 </script>
 
 <style scoped>
-<<<<<<< HEAD
 /deep/ .el-tree-node__content > .el-checkbox.is-disabled {
   display: none;
-=======
-.expanded+label>.el-checkbox__input{
-  display:none
->>>>>>> bb5306637cb95ff0af954d4a5222914fc41d12aa
 }
 </style>

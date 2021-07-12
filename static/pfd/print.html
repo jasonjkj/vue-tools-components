@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js"></script>
+  <script type="text/JavaScript" src="./jQuery.print.js"></script>
+</head>
+
+<body>
+<button id='button_print' name='button_print' οnclick="javascript:printit()">打印</button>
+<div id='ganburenmianbaio' class=WordSection1 style='width:750px;margin:0 auto;text-align:center;vertical-align: middle;'>
+</div>
+</body>
+
+<script language="javascript">
+function printit(){
+$("#ganburenmianbaio").print({iframe:true,prepend:'<br/>'});
+}
+</script>
+</html>

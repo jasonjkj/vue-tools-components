@@ -1,0 +1,18 @@
+.CodeMirror-hint-active {
+    background-color: #eaf1f5;
+    color: #5a90b0;
+}
+
+.el-dropdown-menu__item.CodeMirror-hint {
+    line-height: 28px;
+}
+
+.hint-title {
+    margin: 10px;
+    margin-left: 4px;
+    line-height: 28px;
+    font-weight: bold;
+    /* 禁止选中  样式 */
+    background: #fff !important;
+    color: #000 !important;
+}
